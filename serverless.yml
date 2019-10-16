@@ -3,6 +3,13 @@ service: sentiment
 provider:
   name: aws
   runtime: nodejs10.x
+  environment:
+    CAPI_KEY: "${file(./serverless.env.yml):CAPI_KEY}"
+    TEST: "${file(./serverless.env.yml):TEST}"
+  stackTags:
+    environment: p
+    teamDL: ftlabs@ft.com
+    systemCode: ftlabs-quiz
 
 functions:
   hello:
