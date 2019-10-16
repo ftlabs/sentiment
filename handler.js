@@ -1,4 +1,5 @@
 "use strict";
+const fetchContent = require("./lib/fetchContent");
 
 module.exports.main = async event => {
   return {
