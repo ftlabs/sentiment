@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/ftlabs/sentiment/issues"
   },
-  "homepage": "https://github.com/ftlabs/sentiment#readme"
+  "homepage": "https://github.com/ftlabs/sentiment#readme",
+  "dependencies": {
+    "node-fetch": "^2.6.0"
+  }
 }

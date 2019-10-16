@@ -11,7 +11,7 @@ provider:
     teamDL: ftlabs@ft.com
     systemCode: ftlabs-sentiment
 functions:
-  hello:
+  main:
     handler: handler.main
     events:
       - http:

@@ -2,11 +2,14 @@
 const fetchContent = require("./lib/fetchContent");
 
 module.exports.main = async event => {
+  const result = fetchContent.getArticle(
+    "5200d5fe-efda-11e9-bfa4-b25f11f42901"
+  );
   return {
     statusCode: 200,
     body: JSON.stringify(
       {
-        message: "Go Serverless v1.0! Your function executed successfully!",
+        message: result,
         input: event
       },
       null,
