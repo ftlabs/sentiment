@@ -10,6 +10,16 @@ provider:
     environment: p
     teamDL: ftlabs@ft.com
     systemCode: ftlabs-sentiment
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - comprehend:DetectKeyPhrases
+        - comprehend:DetectEntities
+        - comprehend:DetectSentiment
+        - comprehend:BatchDetectKeyPhrases
+        - comprehend:BatchDetectEntities
+      Resource: "*"
+
 functions:
   main:
     handler: handler.main
