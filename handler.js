@@ -2,7 +2,7 @@
 const fetchContent = require("./lib/fetchContent");
 
 module.exports.main = async event => {
-  const result = fetchContent.getArticle(
+  const result = await fetchContent.getArticle(
     "5200d5fe-efda-11e9-bfa4-b25f11f42901"
   );
   return {
