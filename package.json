@@ -21,6 +21,7 @@
   "homepage": "https://github.com/ftlabs/sentiment#readme",
   "dependencies": {
     "aws-sdk": "^2.551.0",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.0",
+    "truncate-utf8-bytes": "^1.0.2"
   }
 }
