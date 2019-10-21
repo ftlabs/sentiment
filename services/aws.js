@@ -2,8 +2,7 @@ const AWS = require("aws-sdk");
 const truncate = require("truncate-utf8-bytes");
 const comprehend = new AWS.Comprehend();
 
-async function getSentiments(contentArray) {
-  console.log(contentArray);
+async function getSentiment(contentArray) {
   const sentiment = await Promise.all(
     contentArray.map(file =>
       comprehend
@@ -17,4 +16,4 @@ async function getSentiments(contentArray) {
   return sentiment;
 }
 
-module.exports = { getSentiments };
+module.exports = { getSentiment };
