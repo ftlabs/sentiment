@@ -25,5 +25,5 @@ functions:
     handler: handler.main
     events:
       - http:
-          path: ftlabs-sentiment
+          path: ftlabs-sentiment/{uuid}
           method: any

@@ -3,9 +3,8 @@ const fetchContent = require("./lib/fetchContent");
 const aws = require("./services/aws");
 
 module.exports.main = async event => {
-  const result = await fetchContent.getArticle(
-    "5200d5fe-efda-11e9-bfa4-b25f11f42901"
-  );
+  const uuid = event.pathParameters.uuid;
+  const result = await fetchContent.getArticle(uuid);
   const articleContent = result.bodyXML;
   const sentimentResult = await aws.getSentiments([articleContent]);
   return {
