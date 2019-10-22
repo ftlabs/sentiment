@@ -8,7 +8,7 @@ const ibm = require("./services/ibm");
 module.exports.main = async event => {
   const uuid = event.pathParameters.uuid;
   const result = await fetchContent.getArticle(uuid);
-  const articleContent = extractText(result.bodyXM);
+  const articleContent = extractText(result.bodyXML);
   const sentimentResult = await ibm.getSentiment(articleContent);
   return {
     statusCode: 200,
