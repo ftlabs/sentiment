@@ -10,20 +10,48 @@ const toneAnalyzer = new ToneAnalyzerV3({
   version: "2017-09-21"
 });
 
-async function getSentiment(content) {
-  return new Promise(function(resolve, reject) {
-    var res = {};
-
-    toneAnalyzer.tone(
-      {
-        toneInput: { text: content }
-      },
-      function(err, res) {
-        if (err) reject(err);
-        else resolve(res);
-      }
-    );
-  });
+async function getSentiment({ articleContent, standfirst, title }) {
+  const result = await Promise.all([
+    new Promise(function(resolve, reject) {
+      toneAnalyzer.tone(
+        {
+          toneInput: { text: title }
+        },
+        function(err, res) {
+          if (err) reject(err);
+          else resolve(res);
+        }
+      );
+    }),
+    new Promise(function(resolve, reject) {
+      toneAnalyzer.tone(
+        {
+          toneInput: { text: standfirst }
+        },
+        function(err, res) {
+          if (err) reject(err);
+          else resolve(res);
+        }
+      );
+    }),
+    new Promise(function(resolve, reject) {
+      toneAnalyzer.tone(
+        {
+          toneInput: { text: articleContent }
+        },
+        function(err, res) {
+          if (err) reject(err);
+          else resolve(res);
+        }
+      );
+    })
+  ]);
+  return {
+    title: { ...result[0].result.document_tone, title },
+    standfirst: { ...result[1].result.document_tone, standfirst },
+    fullArticle: { ...result[2].result.document_tone, articleContent },
+    sentences: result[2].result.sentences_tone
+  };
 }
 
 module.exports = { getSentiment };

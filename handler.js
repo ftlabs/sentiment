@@ -11,16 +11,27 @@ module.exports.main = async event => {
   const articleContent = extractText(result.bodyXML);
   const title = result.title;
   const standfirst = result.standfirst;
-  const sentimentResult = await aws.getSentiment({
-    articleContent,
-    title,
-    standfirst
-  });
+
+  const sentimentResult = await Promise.all([
+    ibm.getSentiment({
+      articleContent,
+      title,
+      standfirst
+    }),
+    aws.getSentiment({
+      articleContent,
+      title,
+      standfirst
+    })
+  ]);
+
+  const formattedResult = { ibm: sentimentResult[0], aws: sentimentResult[1] };
+
   return {
     statusCode: 200,
     body: JSON.stringify(
       {
-        message: sentimentResult,
+        message: formattedResult,
         input: event
       },
       null,
