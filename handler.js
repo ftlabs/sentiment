@@ -9,7 +9,13 @@ module.exports.main = async event => {
   const uuid = event.pathParameters.uuid;
   const result = await fetchContent.getArticle(uuid);
   const articleContent = extractText(result.bodyXML);
-  const sentimentResult = await aws.getSentiment(articleContent);
+  const title = result.title;
+  const standfirst = result.standfirst;
+  const sentimentResult = await aws.getSentiment({
+    articleContent,
+    title,
+    standfirst
+  });
   return {
     statusCode: 200,
     body: JSON.stringify(
