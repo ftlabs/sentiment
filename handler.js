@@ -4,6 +4,7 @@ const extractText = require("./lib/extractText");
 
 const aws = require("./services/aws");
 const ibm = require("./services/ibm");
+const meaningCloud = require("./services/meaningCloud");
 
 module.exports.main = async event => {
   const uuid = event.pathParameters.uuid;
@@ -12,30 +13,28 @@ module.exports.main = async event => {
   const title = result.title;
   const standfirst = result.standfirst;
 
-  const sentimentResult = await Promise.all([
-    ibm.getSentiment({
-      articleContent,
-      title,
-      standfirst
-    }),
-    aws.getSentiment({
-      articleContent,
-      title,
-      standfirst
-    })
-  ]);
+  // const sentimentResult = await Promise.all([
+  //   ibm.getSentiment({
+  //     articleContent,
+  //     title,
+  //     standfirst
+  //   }),
+  //   aws.getSentiment({
+  //     articleContent,
+  //     title,
+  //     standfirst
+  //   })
+  // ]);
 
-  const formattedResult = { ibm: sentimentResult[0], aws: sentimentResult[1] };
+  // const formattedResult = { ibm: sentimentResult[0], aws: sentimentResult[1] };
+  const formattedResult = await meaningCloud.getSentiment({
+    articleContent,
+    title,
+    standfirst
+  });
 
   return {
     statusCode: 200,
-    body: JSON.stringify(
-      {
-        message: formattedResult,
-        input: event
-      },
-      null,
-      2
-    )
+    body: JSON.stringify(formattedResult)
   };
 };
