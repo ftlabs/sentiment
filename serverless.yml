@@ -8,6 +8,8 @@ provider:
     TONE_ANALYZER_IAM_APIKEY: "${file(./serverless.env.yml):TONE_ANALYZER_IAM_APIKEY}"
     TONE_ANALYZER_URL: "${file(./serverless.env.yml):TONE_ANALYZER_URL}"
     TEST: "${file(./serverless.env.yml):TEST}"
+    MEANING_CLOUD_URL: "${file(./serverless.env.yml):MEANING_CLOUD_URL}"
+    MEANING_CLOUD_APIKEY: "${file(./serverless.env.yml):MEANING_CLOUD_APIKEY}"
   stackTags:
     environment: p
     teamDL: ftlabs@ft.com
