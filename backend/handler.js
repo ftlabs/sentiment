@@ -11,7 +11,7 @@ module.exports.main = async event => {
     let finalProviderArray = [];
     const potentialProviders = { aws, ibm, meaningCloud };
     const validProviders = ["aws", "ibm", "meaningCloud"];
-    if (event.queryStringParameters.providers) {
+    if (event.queryStringParameters && event.queryStringParameters.providers) {
       const providerArray = event.queryStringParameters.providers.split(",");
       let valid = true;
       providerArray.forEach(provider => {
@@ -54,19 +54,27 @@ module.exports.main = async event => {
       })
     );
     const finalResult = {};
+    finalResult.original = { fullArticle: articleContent, title, standfirst };
+
     sentimentResult.forEach(finalObj => {
       finalResult[finalObj.name] = finalObj.result;
     });
 
     return {
       statusCode: 200,
-      body: JSON.stringify(finalResult)
+      body: JSON.stringify(finalResult),
+      headers: {
+        "Access-Control-Allow-Origin": "*"
+      }
     };
   } catch (err) {
     console.error(err);
     return {
       statusCode: 401,
-      body: "Something went wrong"
+      body: "Something went wrong",
+      headers: {
+        "Access-Control-Allow-Origin": "*"
+      }
     };
   }
 };

@@ -31,3 +31,5 @@ functions:
       - http:
           path: ftlabs-sentiment/{uuid}
           method: any
+          cors:
+            origin: "*"
