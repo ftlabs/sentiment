@@ -4,22 +4,46 @@
   <head>
     <meta charset="utf-8" />
 
-    <title>The HTML5 Herald</title>
-    <meta name="description" content="The HTML5 Herald" />
+    <title>FT Labs Sentiment</title>
+    <meta name="description" content="FT Labs Sentiment" />
     <meta name="author" content="SitePoint" />
 
     <link rel="stylesheet" href="css/styles.css?v=1.0" />
   </head>
 
   <body>
-    <form action="">
+    <form id="sentiment-api-call">
       <input type="text" name="uuid" id="uuid" />
-      <input type="radio" name="provider" value="aws" />aws<br />
-      <input type="radio" name="provider" value="ibm" />ibm<br />
-      <input type="radio" name="provider" value="meaningCloud" />Meaning
-      Cloud<br />
-      <input type="button" value="submit" />
+      <div class="provider-checkboxes">
+        <input type="checkbox" name="provider" value="aws" />aws<br />
+        <input type="checkbox" name="provider" value="ibm" />ibm<br />
+        <input type="checkbox" name="provider" value="meaningCloud" />Meaning
+        Cloud<br />
+      </div>
+      <button type="submit">Submit</button>
     </form>
+    <div class="result section">
+      <div class="title">
+        <h3 class="title-heading">Title</h3>
+        <p class="title-content"></p>
+        <div class="title-container container"></div>
+      </div>
+      <div class="standfirst section">
+        <h3 class="standfirst-heading">Stand First</h3>
+        <p class="standfirst-content"></p>
+        <div class="standfirst-container container"></div>
+      </div>
+      <div class="fullArticle section">
+        <h3 class="fullArticle-heading">Full articles</h3>
+        <p class="fullArticle-content"></p>
+        <div class="fullArticle-container container"></div>
+      </div>
+      <div class="sentences section">
+        <h3 class="sentences-heading">Sentences</h3>
+        <p class="sentences-content"></p>
+        <div class="sentences-container container"></div>
+      </div>
+    </div>
     <script src="js/scripts.js"></script>
   </body>
 </html>
