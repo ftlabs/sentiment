@@ -35,9 +35,9 @@ async function getSentiment({ articleContent, title, standfirst }) {
     )
   ]);
   return {
-    title: { ...result[0], title },
-    standfirst: { ...result[1], standfirst },
-    fullArticle: { ...result[2], articleContent },
+    title: { ...result[0] },
+    standfirst: { ...result[1] },
+    fullArticle: { ...result[2] },
     sentences: result[3]
   };
 }

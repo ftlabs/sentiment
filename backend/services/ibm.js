@@ -47,9 +47,9 @@ async function getSentiment({ articleContent, standfirst, title }) {
     })
   ]);
   return {
-    title: { ...result[0].result.document_tone, title },
-    standfirst: { ...result[1].result.document_tone, standfirst },
-    fullArticle: { ...result[2].result.document_tone, articleContent },
+    title: { ...result[0].result.document_tone },
+    standfirst: { ...result[1].result.document_tone },
+    fullArticle: { ...result[2].result.document_tone },
     sentences: result[2].result.sentences_tone
   };
 }
