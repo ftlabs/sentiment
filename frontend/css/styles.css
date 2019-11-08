@@ -18,8 +18,19 @@
 
 body {
   font-family: Sans-Serif;
+  background-color: #fff1e5;
 }
 
 #sentiment-api-call {
   display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.provider-checkboxes {
+  display: flex;
+}
+
+.hidden {
+  display: none;
 }

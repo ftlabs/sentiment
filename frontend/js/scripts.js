@@ -68,9 +68,55 @@ function createResultElement(provider, providerName) {
     pre.setAttribute("id", "json");
     providerContainer.appendChild(pre);
     pre.appendChild(code);
-    code.innerHTML = JSON.stringify(provider[section], undefined, 2);
+    code.innerHTML = JSON.stringify(
+      providerFormat(provider[section], providerName, section),
+      undefined,
+      2
+    );
     parentElement.appendChild(providerContainer);
   });
+}
+
+function providerFormat(provider, providerName, section) {
+  if (providerName === "meaningCloud" && section !== "sentences") {
+    return meaningCloudFormat(provider);
+  }
+  if (providerName === "ibm" && section !== "sentences") {
+    console.log(section);
+    return ibmFormat(provider);
+  }
+  if (providerName === "aws" && section !== "sentences") {
+    console.log(section);
+    return awsFormat(provider);
+  }
+  return provider;
+}
+
+function meaningCloudFormat({
+  score_tag,
+  agreement,
+  subjectivity,
+  confidence,
+  irony
+}) {
+  return {
+    score_tag,
+    agreement,
+    subjectivity,
+    confidence,
+    irony
+  };
+}
+
+function ibmFormat({ tones }) {
+  return { tones };
+}
+
+function awsFormat({ Sentiment, SentimentScore }) {
+  Object.keys(SentimentScore).forEach(key => {
+    SentimentScore[key] = Math.round(SentimentScore[key] * 100) / 100;
+  });
+  return { SentimentScore, Sentiment };
 }
 
 window.addEventListener("load", init);
