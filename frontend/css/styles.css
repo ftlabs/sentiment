@@ -12,10 +12,6 @@
   display: flex;
 }
 
-.container {
-  display: flex;
-}
-
 body {
   font-family: Sans-Serif;
   background-color: #fff1e5;
@@ -33,4 +29,9 @@ body {
 
 .hidden {
   display: none;
+}
+
+.sentences-container {
+  display: flex;
+  flex-direction: column;
 }
