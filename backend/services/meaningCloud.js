@@ -30,7 +30,7 @@ function createParams(text) {
   return {
     method: "POST",
     url: "https://api.meaningcloud.com/sentiment-2.1",
-    headers: { "content-type": "application/x-www-form-urlencoded" },
+    headers: { "content-type": "application/json" },
     form: {
       key: API_KEY,
       lang: "en",

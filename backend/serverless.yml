@@ -33,3 +33,11 @@ functions:
           method: any
           cors:
             origin: "*"
+  aggregator:
+    handler: aggregator.main
+    events:
+      - http:
+          path: ftlabs-sentiment/{topic}
+          method: any
+          cors:
+            origin: "*"

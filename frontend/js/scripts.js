@@ -51,6 +51,7 @@ async function submitForm(event) {
     }
   });
   sentenceFormatter(sentenceData);
+  sentenceFormatterGroups(sentenceData);
 
   const resultContainer = document.querySelector(".result");
   resultContainer.classList.remove("hidden");
