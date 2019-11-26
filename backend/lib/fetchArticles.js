@@ -1,3 +1,4 @@
+const fetch = require("node-fetch");
 const CAPI_KEY = process.env.CAPI_KEY;
 const SAPI_PATH = "https://api.ft.com/content/search/v1";
 
@@ -6,7 +7,6 @@ if (!CAPI_KEY) {
 }
 
 const searchBody = {
-  queryString: 'topics:"UK Politics & Policy"',
   queryContext: {
     curations: ["ARTICLES"]
   },
@@ -86,11 +86,8 @@ function constructSAPIQuery(params) {
 function fetchResText(url, options) {
   return fetchWithTiming(url, options)
     .then(resWithTiming => {
-      const method = options && options.method == "POST" ? "POST" : "GET";
       const res = resWithTiming.res;
       const resOk = res && res.ok;
-      const timing = resWithTiming.timing;
-      recordFetchTiming(method, timing, resOk, res.status, res.statusText);
       if (resOk) {
         return res;
       } else {
@@ -106,9 +103,12 @@ function fetchResText(url, options) {
     .then(res => res.text());
 }
 
-function search(params) {
+function search(searchTerm) {
   const sapiUrl = `${SAPI_PATH}?apiKey=${CAPI_KEY}`;
-  const sapiQuery = constructSAPIQuery(searchBody);
+  const sapiQuery = constructSAPIQuery({
+    ...searchBody,
+    queryString: `topics:"UK Politics & Policy"`
+  });
   const options = {
     method: "POST",
     body: JSON.stringify(sapiQuery),
@@ -126,6 +126,7 @@ function search(params) {
 				text=${text},
 				params=${searchBody}`);
       }
+      console.log(sapiObj);
       return {
         searchBody,
         sapiObj
@@ -135,6 +136,15 @@ function search(params) {
       console.log(`ERROR: search: err=${err}.`);
       return { searchBody }; // NB, no sapiObj...
     });
+}
+
+function fetchWithTiming(url, options = {}) {
+  const startMillis = Date.now();
+  return fetch(url, options).then(res => {
+    const endMillis = Date.now();
+    const timing = endMillis - startMillis;
+    return { res, timing };
+  });
 }
 
 module.exports = {

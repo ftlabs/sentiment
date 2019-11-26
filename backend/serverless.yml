@@ -30,14 +30,14 @@ functions:
     events:
       - http:
           path: ftlabs-sentiment/{uuid}
-          method: any
+          method: get
           cors:
             origin: "*"
   aggregator:
     handler: aggregator.main
     events:
       - http:
-          path: ftlabs-sentiment/{topic}
-          method: any
+          path: aggregator
+          method: get
           cors:
             origin: "*"
