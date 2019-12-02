@@ -3,6 +3,7 @@ const URL = process.env.MEANING_CLOUD_URL;
 const API_KEY = process.env.MEANING_CLOUD_APIKEY;
 
 async function getSentiment({ articleContent, title, standfirst }) {
+  console.log("meaningCloud", articleContent, title, standfirst);
   var request = require("request-promise");
 
   const result = await Promise.all([

@@ -3,6 +3,7 @@ const truncate = require("truncate-utf8-bytes");
 const comprehend = new AWS.Comprehend();
 
 async function getSentiment({ articleContent, title, standfirst }) {
+  console.log("aws", articleContent, title, standfirst);
   const result = await Promise.all([
     comprehend
       .detectSentiment({

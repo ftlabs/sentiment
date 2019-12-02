@@ -11,7 +11,7 @@ const searchBody = {
     curations: ["ARTICLES"]
   },
   resultContext: {
-    maxResults: "10",
+    maxResults: "5",
     offset: "0",
     aspects: [
       "audioVisual",
@@ -48,7 +48,7 @@ const searchBody = {
 function constructSAPIQuery(params) {
   const defaults = {
     queryString: "",
-    maxResults: 10,
+    maxResults: 5,
     offset: 0,
     aspects: ["title", "lifecycle", "location"], // [ "title", "location", "summary", "lifecycle", "metadata"],
     constraints: [],

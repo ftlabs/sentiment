@@ -39,9 +39,24 @@ module.exports.main = async event => {
     }
     const uuid = event.pathParameters.uuid;
     const result = await fetchContent.getArticle(uuid);
+    if (!result.bodyXML || !result.title || !result.standfirst) {
+      console.log("getting in catch");
+      return {
+        statusCode: 200,
+        body: "not article",
+        headers: {
+          "Access-Control-Allow-Origin": "*"
+        }
+      };
+    }
+    console.log(JSON.stringify(result));
     const articleContent = extractText(result.bodyXML);
     const title = result.title;
     const standfirst = result.standfirst;
+
+    console.log("articleContent", articleContent);
+    console.log("title", title);
+    console.log("standfirst", standfirst);
 
     const sentimentResult = await Promise.all(
       finalProviderArray.map(async provider => {
@@ -68,10 +83,10 @@ module.exports.main = async event => {
       }
     };
   } catch (err) {
-    console.error(err);
+    console.error(JSON.stringify(err));
     return {
       statusCode: 401,
-      body: "Something went wrong",
+      body: "Something went wrong in handler",
       headers: {
         "Access-Control-Allow-Origin": "*"
       }

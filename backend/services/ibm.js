@@ -11,6 +11,8 @@ const toneAnalyzer = new ToneAnalyzerV3({
 });
 
 async function getSentiment({ articleContent, standfirst, title }) {
+  console.log("ibm", articleContent, title, standfirst);
+
   const result = await Promise.all([
     new Promise(function(resolve, reject) {
       toneAnalyzer.tone(
