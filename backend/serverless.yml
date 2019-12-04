@@ -5,6 +5,7 @@ provider:
   runtime: nodejs10.x
   timeout: 30
   memorySize: 3008
+  region: eu-west-1
   environment:
     CAPI_KEY: "${file(./serverless.env.yml):CAPI_API_KEY}"
     TONE_ANALYZER_IAM_APIKEY: "${file(./serverless.env.yml):TONE_ANALYZER_IAM_APIKEY}"
