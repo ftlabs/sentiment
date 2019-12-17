@@ -49,14 +49,9 @@ module.exports.main = async event => {
         }
       };
     }
-    console.log(JSON.stringify(result));
     const articleContent = extractText(result.bodyXML);
     const title = result.title;
     const standfirst = result.standfirst;
-
-    console.log("articleContent", articleContent);
-    console.log("title", title);
-    console.log("standfirst", standfirst);
 
     const sentimentResult = await Promise.all(
       finalProviderArray.map(async provider => {
