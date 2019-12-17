@@ -55,6 +55,7 @@ async function submitForm(event) {
   });
   const matchedSentenceData = sentenceFormatter(sentenceData);
   sentenceFormatterGroups(matchedSentenceData, providersSelected);
+  console.log(sentenceData);
 
   const resultContainer = document.querySelector(".result");
   resultContainer.classList.remove("hidden");
@@ -71,13 +72,11 @@ function sentenceFormatterGroups(matchedSentenceData, providersSelected) {
   const groupedStandardisedSentenceData = groupStandardisedSentenceData(
     standardisedSentenceData
   );
-  // console.log(groupedStandardisedSentenceData);
   displaySentenceData(groupedStandardisedSentenceData);
 }
 
 function displaySentenceData(groupedStandardisedSentenceData) {
   groupedStandardisedSentenceData.forEach(sentenceData => {
-    console.log(sentenceData);
     const selector =
       sentenceData.length === 3
         ? ".grouped-three-container"
