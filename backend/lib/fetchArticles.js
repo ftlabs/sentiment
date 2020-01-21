@@ -48,7 +48,7 @@ const searchBody = {
 function constructSAPIQuery(params) {
   const defaults = {
     queryString: "",
-    maxResults: 5,
+    maxResults: 10,
     offset: 0,
     aspects: ["title", "lifecycle", "location"], // [ "title", "location", "summary", "lifecycle", "metadata"],
     constraints: [],

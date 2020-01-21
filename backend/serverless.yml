@@ -6,11 +6,11 @@ provider:
   timeout: 30
   memorySize: 3008
   region: eu-west-1
+  profile: sentiment
   environment:
     CAPI_KEY: "${file(./serverless.env.yml):CAPI_API_KEY}"
     TONE_ANALYZER_IAM_APIKEY: "${file(./serverless.env.yml):TONE_ANALYZER_IAM_APIKEY}"
     TONE_ANALYZER_URL: "${file(./serverless.env.yml):TONE_ANALYZER_URL}"
-    TEST: "${file(./serverless.env.yml):TEST}"
     MEANING_CLOUD_URL: "${file(./serverless.env.yml):MEANING_CLOUD_URL}"
     MEANING_CLOUD_APIKEY: "${file(./serverless.env.yml):MEANING_CLOUD_APIKEY}"
     SENTIMENT_URL: "https://umwi7bvika.execute-api.us-east-1.amazonaws.com/${opt:stage, self:provider.stage}/ftlabs-sentiment/"
@@ -27,6 +27,9 @@ provider:
         - comprehend:BatchDetectKeyPhrases
         - comprehend:BatchDetectEntities
       Resource: "*"
+
+plugins:
+  - serverless-offline
 
 functions:
   main:

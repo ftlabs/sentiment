@@ -1,6 +1,14 @@
 function init() {
-  var form = document.getElementById("sentiment-api-call");
+  const form = document.getElementById("sentiment-api-call");
   form.addEventListener("submit", submitForm);
+  const documentation = document.querySelector(".show-documentation");
+  documentation.addEventListener("click", toggleDocumentation);
+}
+
+function toggleDocumentation() {
+  const documentation = document.querySelector(".documentation-contents");
+  documentation.classList.toggle("hidden");
+  documentation.classList.toggle("flex");
 }
 
 async function submitForm(event) {
@@ -55,11 +63,25 @@ async function submitForm(event) {
   });
   const matchedSentenceData = sentenceFormatter(sentenceData);
   sentenceFormatterGroups(matchedSentenceData, providersSelected);
-  console.log(sentenceData);
+  console.log("sentenceData", sentenceData);
+
+  sd = sentenceData;
+
+  const groupedBySentimentData = groupedBySentimentData(sentenceData);
 
   const resultContainer = document.querySelector(".result");
   resultContainer.classList.remove("hidden");
   loading.classList.add("hidden");
+}
+
+function groupedBySentimentData(sentenceData) {
+  Object.keys(sentenceData).forEach(key => {
+    let sentenceDat;
+    if (key === "ibm") {
+    } else if (key === "aws") {
+    } else if (key === "meaningCloud") {
+    }
+  });
 }
 
 function sentenceFormatterGroups(matchedSentenceData, providersSelected) {

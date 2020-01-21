@@ -12,80 +12,100 @@
   </head>
 
   <body>
-    <form id="sentiment-api-call">
-      <input type="text" name="uuid" id="uuid" />
-      <div class="provider-checkboxes">
-        <input type="checkbox" name="provider" value="aws" />aws<br />
-        <input type="checkbox" name="provider" value="ibm" />ibm<br />
-        <input type="checkbox" name="provider" value="meaningCloud" />Meaning
-        Cloud<br />
-      </div>
-      <button type="submit">Submit</button>
-    </form>
+    <div>
+      <form id="sentiment-api-call">
+        <input type="text" name="uuid" id="uuid" />
+        <div class="provider-checkboxes">
+          <input type="checkbox" name="provider" value="aws" />aws<br />
+          <input type="checkbox" name="provider" value="ibm" />ibm<br />
+          <input type="checkbox" name="provider" value="meaningCloud" />Meaning
+          Cloud<br />
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+
     <p class="loading hidden">Loading...</p>
     <div class="documentation">
-      <div class="aws"></div>
-      <div class="ibm"></div>
-      <div class="meaningCloud">
-        <table style="width:100%">
-          <tr>
-            <th>Key</th>
-            <th>Meaning</th>
-          </tr>
-          <tr>
-            <td>score_tag</td>
-            <td>
-              This tag indicates the polarity found (or not found) in the
-              element it refers to. It may apply to several elements:
-              polarity_term, sentimented_concept, sentimented_entity, segment,
-              sentence or the global polarity of the text. <br />
-              P+: strong positive <br />
-              P: positive <br />
-              NEU: neutral <br />
-              N: negative <br />
-              N+: strong negative <br />
-              NONE: without sentiment
-            </td>
-          </tr>
-          <tr>
-            <td>agreement</td>
-            <td>
-              This field marks the agreement between the sentiments detected in
-              the text, the sentence or the segment it refers to. It has two
-              possible values: <br />
-              AGREEMENT: the different elements have the same polarity. <br />
-              DISAGREEMENT: there is disagreement between the different
-              elements' polarity.
-            </td>
-          </tr>
-          <tr>
-            <td>subjectivity</td>
-            <td>
-              This field marks the subjectivity of the text. It has two possible
-              values: <br />
-              OBJECTIVE: the text does not have any subjectivity marks.
-              <br />
-              SUBJECTIVE: the text has subjective marks.
-            </td>
-          </tr>
-          <tr>
-            <td>confidence</td>
-            <td>
-              This field represents the confidence associated with the sentiment
-              analysis performed on the text. Its value is an integer number in
-              the 0-100 range.
-            </td>
-          </tr>
-          <tr>
-            <td>irony</td>
-            <td>
-              This field indicates the irony of the text. It has two possible
-              values: <br />
-              NONIRONIC: the text does not have ironic marks <br />
-              IRONIC: the text has ironic marks
-            </td>
-          </tr>
-        </table>
+      <input
+        type="button"
+        class="show-documentation"
+        value="Show documentation"
+      />
+      <div class="documentation-contents hidden">
+        <div class="aws">
+          <h1>AWS</h1>
+          <a
+            href="https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/Comprehend.html"
+            >Link</a
+          >
+        </div>
+        <div class="ibm">
+          <h1>IBM</h1>
+          <a href="https://cloud.ibm.com/apidocs/tone-analyzer">Link</a>
+        </div>
+        <div class="meaningCloud">
+          <h1>Meaning Cloud</h1>
+          <table style="width:100%">
+            <tr>
+              <th>Key</th>
+              <th>Meaning</th>
+            </tr>
+            <tr>
+              <td>score_tag</td>
+              <td>
+                This tag indicates the polarity found (or not found) in the
+                element it refers to. It may apply to several elements:
+                polarity_term, sentimented_concept, sentimented_entity, segment,
+                sentence or the global polarity of the text. <br />
+                P+: strong positive <br />
+                P: positive <br />
+                NEU: neutral <br />
+                N: negative <br />
+                N+: strong negative <br />
+                NONE: without sentiment
+              </td>
+            </tr>
+            <tr>
+              <td>agreement</td>
+              <td>
+                This field marks the agreement between the sentiments detected
+                in the text, the sentence or the segment it refers to. It has
+                two possible values: <br />
+                AGREEMENT: the different elements have the same polarity. <br />
+                DISAGREEMENT: there is disagreement between the different
+                elements' polarity.
+              </td>
+            </tr>
+            <tr>
+              <td>subjectivity</td>
+              <td>
+                This field marks the subjectivity of the text. It has two
+                possible values: <br />
+                OBJECTIVE: the text does not have any subjectivity marks.
+                <br />
+                SUBJECTIVE: the text has subjective marks.
+              </td>
+            </tr>
+            <tr>
+              <td>confidence</td>
+              <td>
+                This field represents the confidence associated with the
+                sentiment analysis performed on the text. Its value is an
+                integer number in the 0-100 range.
+              </td>
+            </tr>
+            <tr>
+              <td>irony</td>
+              <td>
+                This field indicates the irony of the text. It has two possible
+                values: <br />
+                NONIRONIC: the text does not have ironic marks <br />
+                IRONIC: the text has ironic marks
+              </td>
+            </tr>
+          </table>
+        </div>
       </div>
     </div>
     <div class="result section hidden">
